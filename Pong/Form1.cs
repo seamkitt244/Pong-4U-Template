@@ -66,8 +66,8 @@ namespace Pong
         int player2Score = 0;
         int gameWinScore = 5;  // number of points needed to win game
 
-        int paddle1Edge = 20;
-        int paddle2Edge = 20;  // buffer distance between screen edge and paddle            
+        //int paddle1Edge = 20;
+        //int paddle2Edge = 20;  // buffer distance between screen edge and paddle            
         #endregion
 
         public Form1()
@@ -250,7 +250,6 @@ namespace Pong
             {
                 ballMoveDown = false;
                 collisionSound.Play();
-                // this.BackColor = Color.FromArgb(randGen.Next(1, 250), randGen.Next(1, 250), randGen.Next(1, 250));
                 this.Refresh();
             }
 
@@ -258,7 +257,6 @@ namespace Pong
             {
                 ballMoveDown = true;
                 collisionSound.Play();
-                // this.BackColor = Color.FromArgb(randGen.Next(1, 250), randGen.Next(1, 250), randGen.Next(1, 250));
                 this.Refresh();
             }
 
@@ -271,14 +269,12 @@ namespace Pong
             if (power.Y < 0)
             {
                 powerMoveDown = false;
-                // this.BackColor = Color.FromArgb(randGen.Next(1, 250), randGen.Next(1, 250), randGen.Next(1, 250));
                 this.Refresh();
             }
 
             if (power.Y > this.Height - ball.Height)
             {
                 powerMoveDown = true;
-                // this.BackColor = Color.FromArgb(randGen.Next(1, 250), randGen.Next(1, 250), randGen.Next(1, 250));
                 this.Refresh();
             }
             #endregion
@@ -297,7 +293,7 @@ namespace Pong
                 {
                     ballMoveRight = false;
                 }
-                value = randGen.Next(1, 5);
+                value = randGen.Next(1, 4);
                 if (power.IntersectsWith(p1))
                 {
                     veiw = false;
@@ -313,13 +309,8 @@ namespace Pong
                     else if (value == 3)
                     {
                         paddle1Speed = paddle1Speed * 2;
-                        paddle2Speed = paddle2Speed - 2;
+                        paddle2Speed = paddle2Speed - 1;
                     }
-                    //else if (value == 4)
-                    //{
-                    //    paddle2Edge = 30;
-                    //}
-
                 }
                 if (power.IntersectsWith(p2))
                 {
@@ -335,13 +326,9 @@ namespace Pong
                     }
                     else if (value == 3)
                     {
-                        paddle1Speed = paddle1Speed - 2;
+                        paddle1Speed = paddle1Speed - 1;
                         paddle2Speed = paddle2Speed * 2;
                     }
-                    //else if (value == 4)
-                    //{
-                    //    paddle1Edge = 30;
-                    //}
                 }
                 collisionSound.Play();
                 this.BackColor = Color.FromArgb(randGen.Next(1, 250), randGen.Next(1, 250), randGen.Next(1, 250));
@@ -402,7 +389,6 @@ namespace Pong
         private void GameOver(string winner)
         {
             // TODO create game over logic
-            // --- stop the gameUpdateLoop
             newGameOk = false;
             gameUpdateLoop.Stop();
             // --- show a message on the startLabel to indicate a winner, (need to Refresh).
